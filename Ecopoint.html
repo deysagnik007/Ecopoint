@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Recycling Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f5f3;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #2e7d32; color: white; padding: 1rem; text-align: center;
+    }
+    nav {
+      background: #388e3c; display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    nav a {
+      padding: 0.8rem 1.2rem; color: white; text-decoration: none;
+      display: block; font-weight: bold;
+    }
+    nav a:hover { background: #1b5e20; }
+    section { display: none; padding: 2rem; }
+    section:target { display: block; }
+    .card {
+      background: white; max-width: 600px; margin: auto; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    label { display: block; margin-top: 1rem; }
+    input, select {
+      width: 100%; padding: 0.6rem; margin-top: 0.3rem;
+      border-radius: 8px; border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1.5rem; padding: 0.8rem 1.2rem;
+      background: #2e7d32; color: white; border: none; border-radius: 8px;
+      font-size: 1rem; cursor: pointer;
+    }
+    button:hover { background: #1b5e20; }
+    .success { color: #2e7d32; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>♻ Community Recycling Platform</h1>
+    <p>Recycle responsibly, connect with your community, and earn rewards!</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule Pickup</a>
+    <a href="#log">Log Recycling</a>
+    <a href="#refer">Refer a Friend</a>
+    <a href="../cgi-bin/recycle.py?action=leaderboard">Leaderboard</a>
+    <a href="#tools">My Tools</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <div class="card">
+      <h2>Welcome!</h2>
+      <p>Use the navigation bar above to schedule pickups, log your recycling, invite friends, and check the leaderboard.</p>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule">
+    <div class="card">
+      <h2>Schedule a Pickup</h2>
+      <form method="post" action="../cgi-bin/recycle.py">
+        <input type="hidden" name="action" value="schedule">
+        <label>Name</label>
+        <input type="text" name="name" required>
+        <label>Address</label>
+        <input type="text" name="address" required>
+        <label>Date</label>
+        <input type="date" name="date" required>
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Schedule Success -->
+  <section id="success-schedule">
+    <div class="card">
+      <h2 class="success">✅ Pickup Scheduled Successfully!</h2>
+      <p>Your recycling pickup request has been recorded.</p>
+      <p><a href="#home">Back to Home</a></p>
+    </div>
+  </section>
+
+  <!-- Log Recycling -->
+  <section id="log">
+    <div class="card">
+      <h2>Log Your Recycling</h2>
+      <form method="post" action="../cgi-bin/recycle.py">
+        <input type="hidden" name="action" value="log">
+        <label>Name</label>
+        <input type="text" name="name" required>
+        <label>Material Type</label>
+        <select name="material" required>
+          <option value="Plastic">Plastic</option>
+          <option value="Glass">Glass</option>
+          <option value="Paper">Paper</option>
+          <option value="Metal">Metal</option>
+        </select>
+        <label>Weight (kg)</label>
+        <input type="number" name="weight" step="0.1" required>
+        <button type="submit">Log Recycling</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Log Success -->
+  <section id="success-log">
+    <div class="card">
+      <h2 class="success">✅ Recycling Logged Successfully!</h2>
+      <p>Your recycling activity has been saved.</p>
+      <p><a href="#home">Back to Home</a></p>
+    </div>
+  </section>
+
+  <!-- Refer -->
+  <section id="refer">
+    <div class="card">
+      <h2>Refer a Friend</h2>
+      <form method="post" action="../cgi-bin/recycle.py">
+        <input type="hidden" name="action" value="refer">
+        <label>Your Name</label>
+        <input type="text" name="your_name" required>
+        <label>Friend's Name</label>
+        <input type="text" name="friend_name" required>
+        <label>Friend's Email</label>
+        <input type="email" name="friend_email" required>
+        <button type="submit">Send Invite</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Refer Success -->
+  <section id="success-refer">
+    <div class="card">
+      <h2 class="success">✅ Referral Sent Successfully!</h2>
+      <p>Your friend has been invited to join the recycling platform.</p>
+      <p><a href="#home">Back to Home</a></p>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools">
+    <div class="card">
+      <h2>My Tools</h2>
+      <ul>
+        <li><a href="#schedule">Schedule Pickups</a></li>
+        <li><a href="#log">Log Recycling</a></li>
+        <li><a href="#refer">Refer Friends</a></li>
+        <li><a href="../cgi-bin/recycle.py?action=leaderboard">View Leaderboard</a></li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
